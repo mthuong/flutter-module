@@ -80,6 +80,7 @@ build/
 **/.ios/Flutter/Generated.xcconfig
 **/.ios/ServiceDefinitions.json
 **/.ios/Flutter/FlutterPluginRegistrant/Classes/GeneratedPluginRegistrant.*
+**/.ios/Flutter/flutter_export_environment.sh
 
 # Symbolication related
 app.*.symbols

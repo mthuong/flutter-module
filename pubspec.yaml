@@ -31,6 +31,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  flutter_lokalise: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -122,5 +123,9 @@ flutter:
     androidX: true
     androidPackage: com.coinhako.mobile_cross_platform
     iosBundleIdentifier: com.coinhako.mobile_cross_platform
+
+flutter_lokalise:
+  project_id: 494624205bdfb40540d714.76960358
+  api_token: 79318448bf0acc17d6dc98bbd3fec011f2401f26
 flutter_intl:
   enabled: true

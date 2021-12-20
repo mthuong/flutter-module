@@ -7,20 +7,18 @@
 
 import 'package:flutter/widgets.dart';
 
-class $AssetsI18nGen {
-  const $AssetsI18nGen();
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
 
-  /// File path: assets/i18n/en.json
-  String get en => 'assets/i18n/en.json';
-
-  /// File path: assets/i18n/vi.json
-  String get vi => 'assets/i18n/vi.json';
+  /// File path: assets/images/hako_loader.gif
+  AssetGenImage get hakoLoader =>
+      const AssetGenImage('assets/images/hako_loader.gif');
 }
 
 class Assets {
   Assets._();
 
-  static const $AssetsI18nGen i18n = $AssetsI18nGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage extends AssetImage {

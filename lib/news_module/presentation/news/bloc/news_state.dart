@@ -1,40 +1,39 @@
 part of 'news_bloc.dart';
 
-@immutable
-abstract class NewsState extends Equatable {
-  const NewsState();
+enum NewsStatus { initial, success, failure }
 
-  @override
-  List<Object> get props => [];
-}
+class NewsState extends Equatable {
+  const NewsState({
+    this.status = NewsStatus.initial,
+    this.articles = const <ArticleEntity>[],
+    this.hasReachedMax = false,
+    this.page = 1,
+  });
 
-class NewsLoading extends NewsState {}
-
-class NewsLoaded extends NewsState {
+  final NewsStatus status;
   final List<ArticleEntity> articles;
+  final bool hasReachedMax;
+  final int page;
 
-  const NewsLoaded(
-    this.articles,
-  );
-
-  @override
-  List<Object> get props {
-    return [articles];
+  NewsState copyWith({
+    NewsStatus? status,
+    List<ArticleEntity>? articles,
+    bool? hasReachedMax,
+    int? page,
+  }) {
+    return NewsState(
+      status: status ?? this.status,
+      articles: articles ?? this.articles,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      page: page ?? this.page,
+    );
   }
 
   @override
   String toString() {
-    return 'HomeLoaded{response: $articles}';
+    return '''NewsState { status: $status, page: $page, hasReachedMax: $hasReachedMax, articles: ${articles.length} }''';
   }
-}
-
-class NewsNotLoaded extends NewsState {
-  final String e;
-
-  const NewsNotLoaded(this.e);
 
   @override
-  String toString() {
-    return 'HomeNotLoaded{e: $e}';
-  }
+  List<Object> get props => [status, page, articles, hasReachedMax];
 }

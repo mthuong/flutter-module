@@ -14,9 +14,12 @@ class _ArticlesService implements ArticlesService {
   String? baseUrl;
 
   @override
-  Future<ArticlesResponse> getArticles() async {
+  Future<ArticlesResponse> getArticles({required page, required type}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'type': await compute(serializeNewsTypeQuery, type)
+    };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(

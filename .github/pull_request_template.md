@@ -1,5 +1,6 @@
 ## JIRA Ticket's Links:
 Put links of Jira ticket here
+
 ## Description
 A few sentences describing the overall goals of the pull request's commits.
 

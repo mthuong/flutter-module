@@ -87,3 +87,6 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+# Untranslated messages
+untranslated_messages.txt

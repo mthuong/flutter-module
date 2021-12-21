@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_cross_platform/gen/fonts.gen.dart';
 
-class FontConst {
+extension Style on FontFamily {
   static get regular {
     return const TextStyle(
       fontFamily: FontFamily.sFProText,
@@ -26,8 +26,17 @@ class FontConst {
     );
   }
 
+  static get semibold_16 {
+    return semibold.copyWith(fontSize: 16.0);
+  }
+
+  static get semibold_22 {
+    return semibold.copyWith(fontSize: 22.0);
+  }
+
   // REGULAR
   // static final REGULAR_DEFAULT = REGULAR.copyWith(color: COLOR_CONST.DEFAULT);
   // static final REGULAR_DEFAULT_10 = REGULAR_DEFAULT.copyWith(fontSize: 10);
   // static final REGULAR_DEFAULT_12 = REGULAR_DEFAULT.copyWith(fontSize: 12);
+
 }

@@ -1,8 +1,10 @@
-import 'package:mobile_cross_platform/news_module/api/apis.dart';
-import 'package:mobile_cross_platform/news_module/api/response/articles_response.dart';
-import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:mobile_cross_platform/news_module/api/request/article_type_query.dart';
+import 'package:retrofit/retrofit.dart';
+
+import 'package:mobile_cross_platform/news_module/api/apis.dart';
+import 'package:mobile_cross_platform/news_module/api/response/articles_response.dart';
 
 part 'articles_service.g.dart';
 
@@ -14,7 +16,10 @@ abstract class ArticlesService {
       _ArticlesService;
 
   @GET(Apis.articles)
-  Future<ArticlesResponse> getArticles();
+  Future<ArticlesResponse> getArticles({
+    @Query('page') required int page,
+    @Query('type') required NewsTypeQuery type,
+  });
 }
 
 ArticlesResponse deserializeArticlesResponse(Map<String, dynamic> json) =>

@@ -37,8 +37,15 @@ extension ThemeDataExtensions on ThemeData {
 /// Add more color define here
 class ThemeColor {
   final Color error;
+  final Color coinBlueTitle;
+  final Color coinSlateGray;
+  final Color coinLineWhite;
+
   ThemeColor({
     required this.error,
+    required this.coinBlueTitle,
+    required this.coinSlateGray,
+    required this.coinLineWhite,
   });
 }
 
@@ -49,6 +56,9 @@ class ThemeFields {
     return ThemeFields(
       colors: ThemeColor(
         error: const Color(0xFFFF0000),
+        coinBlueTitle: const Color.fromRGBO(53, 64, 83, 1),
+        coinSlateGray: const Color.fromRGBO(117, 128, 142, 1),
+        coinLineWhite: const Color(0xFFEEF2F5),
       ),
     );
   }
@@ -75,6 +85,9 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
     ThemeFields(
       colors: ThemeColor(
         error: const Color(0xFFFF0000),
+        coinBlueTitle: const Color.fromRGBO(53, 64, 83, 1),
+        coinSlateGray: const Color.fromRGBO(117, 128, 142, 1),
+        coinLineWhite: const Color(0xFFEEF2F5),
       ),
     ),
   );
@@ -96,6 +109,9 @@ final ThemeData darkTheme = ThemeData.light().copyWith(
     ThemeFields(
       colors: ThemeColor(
         error: const Color(0xFFFF0000),
+        coinBlueTitle: const Color.fromRGBO(53, 64, 83, 1),
+        coinSlateGray: const Color.fromRGBO(117, 128, 142, 1),
+        coinLineWhite: const Color(0xFFEEF2F5),
       ),
     ),
   );

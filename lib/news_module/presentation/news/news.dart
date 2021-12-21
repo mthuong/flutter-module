@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/bloc/news_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/widgets/widget_list_article.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_loading.dart';
+import 'package:mobile_cross_platform/theme/fonts.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({Key? key}) : super(key: key);
@@ -24,19 +25,20 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsBloc, NewsState>(
       builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text(AppLocalizations.of(context)!.news),
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              AppLocalizations.of(context)!.news,
+              style: Style.semibold,
             ),
-            body: Container(
-              color: Colors.white,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  _buildContent(state),
-                ],
-              ),
+          ),
+          body: Container(
+            color: Colors.white,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                _buildContent(state),
+              ],
             ),
           ),
         );
@@ -45,7 +47,7 @@ class _NewsScreenState extends State<NewsScreen> {
   }
 
   Widget _buildContent(NewsState state) {
-    if (state is NewsLoaded) {
+    if (state.status == NewsStatus.success) {
       return Expanded(
         child: RefreshIndicator(
           onRefresh: () async {
@@ -56,7 +58,7 @@ class _NewsScreenState extends State<NewsScreen> {
           ),
         ),
       );
-    } else if (state is NewsLoading) {
+    } else if (state.status == NewsStatus.initial) {
       return const WidgetLoading();
     } else {
       return const Expanded(

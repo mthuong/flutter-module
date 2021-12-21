@@ -11,7 +11,7 @@ import 'package:mobile_cross_platform/news_module/repositories/article/core/arti
 import 'package:mobile_cross_platform/theme/theme.dart';
 
 import 'app_config.dart';
-import 'simple_bloc_delegate.dart';
+import 'simple_bloc_observer.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
 
     BlocOverrides.runZoned(
       () => null,
-      blocObserver: SimpleBlocDelegate(),
+      blocObserver: SimpleBlocObserver(),
     );
     final dio = DioProvider.instance();
     var articleService = ArticlesService(

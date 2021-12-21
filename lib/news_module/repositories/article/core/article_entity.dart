@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-
+import 'package:mobile_cross_platform/utils/utils.dart';
 part 'article_entity.g.dart';
 
 @JsonSerializable()
@@ -25,4 +25,11 @@ class ArticleEntity {
   factory ArticleEntity.fromJson(Map<String, dynamic> json) =>
       _$ArticleEntityFromJson(json);
   Map<String, dynamic> toJson() => _$ArticleEntityToJson(this);
+}
+
+extension ArticleEntityDateTime on ArticleEntity {
+  String get timeAgo {
+    DateTime dateTime = DateTime.parse(date);
+    return dateTime.timeAgo();
+  }
 }

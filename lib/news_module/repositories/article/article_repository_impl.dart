@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:mobile_cross_platform/news_module/api/articles_service.dart';
+import 'package:mobile_cross_platform/news_module/api/request/article_type_query.dart';
 import 'package:mobile_cross_platform/news_module/repositories/article/core/article_entity.dart';
 import 'package:mobile_cross_platform/news_module/repositories/article/core/article_repository.dart';
 
@@ -14,8 +15,11 @@ class ArticleRepositoryImpl implements ArticlesRepository {
   });
 
   @override
-  Future<List<ArticleEntity>> loadArticles() async {
-    final response = await articlesService.getArticles();
+  Future<List<ArticleEntity>> loadArticles({required int page}) async {
+    final response = await articlesService.getArticles(
+      page: page,
+      type: NewsTypeQuery(NewsType.latest),
+    );
 
     return response.articles ?? [];
   }

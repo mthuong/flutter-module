@@ -13,7 +13,7 @@ jobs:
 
     env:
       # JAVA_VERSION: "11.0"
-      FLUTTER_VERSION: "2.8.0"
+      FLUTTER_VERSION: "2.x"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -25,5 +25,6 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: $
+        channel: stable
     - run: flutter pub get
     - run: flutter analyze

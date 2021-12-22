@@ -13,6 +13,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/hako_loader.gif
   AssetGenImage get hakoLoader =>
       const AssetGenImage('assets/images/hako_loader.gif');
+
+  /// File path: assets/images/ic_news_browers.png
+  AssetGenImage get icNewsBrowers =>
+      const AssetGenImage('assets/images/ic_news_browers.png');
+
+  /// File path: assets/images/ic_news_setting.png
+  AssetGenImage get icNewsSetting =>
+      const AssetGenImage('assets/images/ic_news_setting.png');
+
+  /// File path: assets/images/ic_news_share.png
+  AssetGenImage get icNewsShare =>
+      const AssetGenImage('assets/images/ic_news_share.png');
 }
 
 class Assets {

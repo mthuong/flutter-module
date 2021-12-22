@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_cross_platform/app/router.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/bloc/news_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_default_loading.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_separator.dart';
@@ -90,73 +91,80 @@ class _ItemWidgetArticle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 20,
-      ),
-      child: Column(
-        children: [
-          IntrinsicHeight(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  flex: 6,
-                  child: Container(
-                    padding: const EdgeInsets.only(
-                      right: 4,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            article.title,
-                            style: Style.semibold_16,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(AppRouter.newsDetail, arguments: article);
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 20,
+        ),
+        child: Column(
+          children: [
+            IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    flex: 6,
+                    child: Container(
+                      padding: const EdgeInsets.only(
+                        right: 4,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              article.title,
+                              style: Style.semibold_16,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                        ),
-                        Text(
-                          '${article.timeAgo} • ${article.source}',
-                          style: Style.regular.copyWith(
-                            color: Theme.of(context).own().colors.coinSlateGray,
+                          Text(
+                            '${article.timeAgo} • ${article.source}',
+                            style: Style.regular.copyWith(
+                              color:
+                                  Theme.of(context).own().colors.coinSlateGray,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 4,
-                  child: SizedBox(
-                    height: 100,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(6.0),
-                      child: Image.network(
-                        article.banner ?? '',
-                        fit: BoxFit.cover,
+                        ],
                       ),
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    flex: 4,
+                    child: SizedBox(
+                      height: 100,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(6.0),
+                        child: Image.network(
+                          article.banner ?? '',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const WidgetSpacer(
-            height: 8,
-          ),
-          // Link
-          Text(
-            article.link ?? '',
-            style: Style.regular.copyWith(
-              color: Theme.of(context).own().colors.coinSlateGray,
+            const WidgetSpacer(
+              height: 8,
             ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          )
-        ],
+            // Link
+            Text(
+              article.link ?? '',
+              style: Style.regular.copyWith(
+                color: Theme.of(context).own().colors.coinSlateGray,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -172,55 +180,61 @@ class _ItemWidgetHighlightArticle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: const Alignment(0.6, 1),
-      children: [
-        Image.network(
-          article.banner ?? '',
-          fit: BoxFit.cover,
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 20,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context)
+            .pushNamed(AppRouter.newsDetail, arguments: article);
+      },
+      child: Stack(
+        alignment: const Alignment(0.6, 1),
+        children: [
+          Image.network(
+            article.banner ?? '',
+            fit: BoxFit.cover,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                article.title,
-                style: Style.semibold_22.copyWith(
-                  color: Colors.white,
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  article.title,
+                  style: Style.semibold_22.copyWith(
+                    color: Colors.white,
+                  ),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const WidgetSpacer(
-                height: 8,
-              ),
-              Text(
-                '${article.timeAgo} • ${article.source}',
-                style: Style.regular.copyWith(
-                  color: Colors.white,
+                const WidgetSpacer(
+                  height: 8,
                 ),
-              ),
-              const WidgetSpacer(
-                height: 8,
-              ),
-              // Link
-              Text(
-                article.link ?? '',
-                style: Style.regular.copyWith(
-                  color: Colors.white,
+                Text(
+                  '${article.timeAgo} • ${article.source}',
+                  style: Style.regular.copyWith(
+                    color: Colors.white,
+                  ),
                 ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              )
-            ],
+                const WidgetSpacer(
+                  height: 8,
+                ),
+                // Link
+                Text(
+                  article.link ?? '',
+                  style: Style.regular.copyWith(
+                    color: Colors.white,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                )
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

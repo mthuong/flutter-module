@@ -90,3 +90,6 @@ app.*.map.json
 
 # Untranslated messages
 untranslated_messages.txt
+
+# Log
+*.log

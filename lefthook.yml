@@ -1,5 +1,5 @@
-pre-push:
+pre-commit:
   parallel: true
   commands:
-    analyze:
+    linter:
       run: flutter analyze

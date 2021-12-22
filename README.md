@@ -16,3 +16,11 @@ see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-a
 - `flutter pub get`
 - `pod install` if you have change any flutter package
 - Open main XCode project and run as normal
+
+## Debugging + hot reload
+
+```ruby
+flutter attach
+```
+
+It will start an observatory debugger for our Flutter module.

@@ -4,7 +4,7 @@ import 'package:mobile_cross_platform/news_module/presentation/news_detail/sc_ne
 import 'package:mobile_cross_platform/news_module/repositories/article/core/article_entity.dart';
 
 class AppRouter {
-  static const String news = '/news';
+  static const String news = '/';
   static const String newsDetail = '/news_detail';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {

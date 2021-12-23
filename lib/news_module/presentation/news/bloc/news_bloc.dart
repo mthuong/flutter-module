@@ -34,25 +34,36 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   NewsBloc({
     required this.articlesRepository,
   }) : super(const NewsState()) {
-    on<NewsEvent>(
+    on<LoadNews>(
       _onEvent,
+      transformer: debounceDroppable(debounceDuration),
+    );
+    on<RefreshNews>(
+      _onRefreshEvent,
       transformer: debounceDroppable(debounceDuration),
     );
   }
 
+  Future<void> _onRefreshEvent(
+    RefreshNews event,
+    Emitter<NewsState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        status: NewsStatus.loading,
+        page: 1,
+      ),
+    );
+
+    await _onEvent(event, emit);
+  }
+
   Future<void> _onEvent(NewsEvent event, Emitter<NewsState> emit) async {
-    if (event is RefreshNews) {
-      emit(
-        const NewsState(
-          page: 1,
-          status: NewsStatus.initial,
-        ),
-      );
-    }
+    log('event: ${event.toString()}');
 
     if (state.hasReachedMax) return;
     try {
-      if (state.status == NewsStatus.initial) {
+      if (state.status == NewsStatus.loading) {
         int page = state.page;
         final articles = await articlesRepository.loadArticles(page: page);
         log(

@@ -21,27 +21,35 @@ class HttpLogInterceptor extends InterceptorsWrapper {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final headers = await NewsPlatformChannel.platform
-        .invokeMapMethod(NewsPlatformMethod.getHeader);
+    try {
+      final headers = await NewsPlatformChannel.platform
+          .invokeMapMethod(NewsPlatformMethod.getHeader);
 
-    if (headers != null) {
-      options.headers[PlatformHeaders.apiKey] = headers[PlatformHeaders.apiKey];
-      options.headers[PlatformHeaders.appVersion] =
-          headers[PlatformHeaders.appVersion];
-      options.headers[PlatformHeaders.cacheControl] =
-          headers[PlatformHeaders.cacheControl];
-      options.headers[PlatformHeaders.contentType] =
-          headers[PlatformHeaders.contentType];
-      options.headers[PlatformHeaders.device] = headers[PlatformHeaders.device];
-      options.headers[PlatformHeaders.deviceDescription] =
-          headers[PlatformHeaders.deviceDescription];
-      options.headers[PlatformHeaders.deviceId] =
-          headers[PlatformHeaders.deviceId];
-      options.headers[PlatformHeaders.locale] = headers[PlatformHeaders.locale];
-      options.headers[PlatformHeaders.nonce] = headers[PlatformHeaders.nonce];
-      options.headers[PlatformHeaders.signature] =
-          headers[PlatformHeaders.signature];
+      if (headers != null) {
+        options.headers[PlatformHeaders.apiKey] =
+            headers[PlatformHeaders.apiKey];
+        options.headers[PlatformHeaders.appVersion] =
+            headers[PlatformHeaders.appVersion];
+        options.headers[PlatformHeaders.cacheControl] =
+            headers[PlatformHeaders.cacheControl];
+        options.headers[PlatformHeaders.contentType] =
+            headers[PlatformHeaders.contentType];
+        options.headers[PlatformHeaders.device] =
+            headers[PlatformHeaders.device];
+        options.headers[PlatformHeaders.deviceDescription] =
+            headers[PlatformHeaders.deviceDescription];
+        options.headers[PlatformHeaders.deviceId] =
+            headers[PlatformHeaders.deviceId];
+        options.headers[PlatformHeaders.locale] =
+            headers[PlatformHeaders.locale];
+        options.headers[PlatformHeaders.nonce] = headers[PlatformHeaders.nonce];
+        options.headers[PlatformHeaders.signature] =
+            headers[PlatformHeaders.signature];
+      }
+    } catch (e) {
+      log(e.toString());
     }
+
     log(
       'onRequest: ${options.uri}\n'
       'data=${options.data}\n'

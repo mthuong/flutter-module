@@ -8,11 +8,3 @@ class LoadNews extends NewsEvent {
 }
 
 class RefreshNews extends NewsEvent {}
-
-class GotoNewsDetail extends NewsEvent {
-  final ArticleEntity article;
-
-  GotoNewsDetail({
-    required this.article,
-  });
-}

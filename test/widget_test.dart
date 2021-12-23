@@ -8,11 +8,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_cross_platform/app/app.dart';
+import 'package:mobile_cross_platform/app/app_config.dart';
+import 'package:mobile_cross_platform/news_module/api/endpoints.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp.runWidget());
+    await tester.pumpWidget(
+      AppConfig(
+        endpointType: EndPointType.staging,
+        child: Builder(
+          builder: (context) {
+            return MyApp.runWidget(context);
+          },
+        ),
+      ),
+    );
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

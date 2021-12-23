@@ -6,8 +6,11 @@ class WidgetLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final safePadding = MediaQuery.of(context).padding.top;
+
     return Expanded(
       child: Container(
+        padding: EdgeInsets.only(bottom: safePadding),
         decoration: const BoxDecoration(color: Colors.transparent),
         child: Center(
           child: Assets.images.hakoLoader.image(fit: BoxFit.cover),

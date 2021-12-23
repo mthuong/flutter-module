@@ -11,7 +11,6 @@ import 'package:mobile_cross_platform/news_module/repositories/article/core/arti
 import 'package:mobile_cross_platform/theme/theme.dart';
 
 import 'app_config.dart';
-import 'simple_bloc_observer.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -29,17 +28,12 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  static Widget runWidget() {
-    // ignore: fixme
-    // FIXME: Change endpoint here if needed
-    const endpoint = EndPointType.staging;
+  static Widget runWidget(BuildContext context) {
+    final config = AppConfig.of(context);
+    final endpoint = config?.endpointType ?? EndPointType.production;
 
     WidgetsFlutterBinding.ensureInitialized();
 
-    BlocOverrides.runZoned(
-      () => null,
-      blocObserver: SimpleBlocObserver(),
-    );
     final dio = DioProvider.instance();
     var articleService = ArticlesService(
       dio,
@@ -47,11 +41,6 @@ class MyApp extends StatelessWidget {
     );
     final ArticlesRepository articleRepository = ArticleRepositoryImpl(
       articlesService: articleService,
-    );
-
-    const appConfig = AppConfig(
-      endpointType: endpoint,
-      child: MyApp(),
     );
 
     return MultiRepositoryProvider(
@@ -63,14 +52,11 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) =>
-                NewsBloc(articlesRepository: articleRepository),
+            create: (context) => NewsBloc(articlesRepository: articleRepository)
+              ..add(RefreshNews()),
           ),
-          // BlocProvider(
-          //   create: (context) => HomeBloc(homeRepository: homeRepository),
-          // ),
         ],
-        child: appConfig,
+        child: const MyApp(),
       ),
     );
   }

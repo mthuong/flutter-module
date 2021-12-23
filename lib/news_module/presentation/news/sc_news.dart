@@ -4,22 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/bloc/news_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/widgets/widget_list_article.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_loading.dart';
+import 'package:mobile_cross_platform/news_module/presentation/widgets/widgets.dart';
 import 'package:mobile_cross_platform/theme/fonts.dart';
 
-class NewsScreen extends StatefulWidget {
+class NewsScreen extends StatelessWidget {
   const NewsScreen({Key? key}) : super(key: key);
-
-  @override
-  _NewsScreenState createState() => _NewsScreenState();
-}
-
-class _NewsScreenState extends State<NewsScreen> {
-  @override
-  void initState() {
-    super.initState();
-    // Load news
-    BlocProvider.of<NewsBloc>(context).add(LoadNews());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +16,7 @@ class _NewsScreenState extends State<NewsScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            leading: Container(),
             title: Text(
               AppLocalizations.of(context)!.news,
               style: Style.semibold,
@@ -37,7 +27,7 @@ class _NewsScreenState extends State<NewsScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                _buildContent(state),
+                _buildContent(context, state),
               ],
             ),
           ),
@@ -46,7 +36,7 @@ class _NewsScreenState extends State<NewsScreen> {
     );
   }
 
-  Widget _buildContent(NewsState state) {
+  Widget _buildContent(BuildContext context, NewsState state) {
     if (state.status == NewsStatus.success) {
       return Expanded(
         child: RefreshIndicator(
@@ -58,6 +48,8 @@ class _NewsScreenState extends State<NewsScreen> {
           ),
         ),
       );
+    } else if (state.status == NewsStatus.loading) {
+      return const WidgetLoading();
     } else if (state.status == NewsStatus.initial) {
       return const WidgetLoading();
     } else {

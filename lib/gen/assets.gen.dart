@@ -14,6 +14,9 @@ class $AssetsImagesGen {
   AssetGenImage get backArrow =>
       const AssetGenImage('assets/images/back_arrow.png');
 
+  /// File path: assets/images/filter.png
+  AssetGenImage get filter => const AssetGenImage('assets/images/filter.png');
+
   /// File path: assets/images/hako_loader.gif
   AssetGenImage get hakoLoader =>
       const AssetGenImage('assets/images/hako_loader.gif');

@@ -1,6 +1,7 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_cross_platform/gen/assets.gen.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/bloc/news_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/widgets/widget_list_article.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_loading.dart';
@@ -21,6 +22,12 @@ class NewsScreen extends StatelessWidget {
               AppLocalizations.of(context)!.news,
               style: Style.semibold,
             ),
+            actions: [
+              IconButton(
+                onPressed: _filterAction,
+                icon: Assets.images.filter.image(),
+              )
+            ],
           ),
           body: Container(
             color: Colors.white,
@@ -59,5 +66,9 @@ class NewsScreen extends StatelessWidget {
         ),
       );
     }
+  }
+
+  void _filterAction() {
+    
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:core';
 
+import 'package:mobile_cross_platform/news_module/repositories/article/core/article_category.dart';
+
 import 'article_entity.dart';
 
 /// A class that Loads articles. The data layer of the app.
@@ -9,5 +11,5 @@ import 'article_entity.dart';
 abstract class ArticlesRepository {
   Future<List<ArticleEntity>> loadArticles({required int page});
 
-  // TODO: Load article detail
+  Future<List<ArticleCategoryEntity>> loadArticleCategories();
 }

@@ -14,6 +14,9 @@ class $AssetsImagesGen {
   AssetGenImage get backArrow =>
       const AssetGenImage('assets/images/back_arrow.png');
 
+  /// File path: assets/images/check.png
+  AssetGenImage get check => const AssetGenImage('assets/images/check.png');
+
   /// File path: assets/images/filter.png
   AssetGenImage get filter => const AssetGenImage('assets/images/filter.png');
 
@@ -32,6 +35,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_news_share.png
   AssetGenImage get icNewsShare =>
       const AssetGenImage('assets/images/ic_news_share.png');
+
+  /// File path: assets/images/unselected.png
+  AssetGenImage get unselected =>
+      const AssetGenImage('assets/images/unselected.png');
 }
 
 class Assets {

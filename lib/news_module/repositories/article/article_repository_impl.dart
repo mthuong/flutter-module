@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:mobile_cross_platform/news_module/api/articles_service.dart';
+import 'package:mobile_cross_platform/news_module/api/request/article_category_request.dart';
 import 'package:mobile_cross_platform/news_module/api/request/article_type_query.dart';
 import 'package:mobile_cross_platform/news_module/repositories/article/core/article_category.dart';
 import 'package:mobile_cross_platform/news_module/repositories/article/core/article_entity.dart';
@@ -30,5 +31,13 @@ class ArticleRepositoryImpl implements ArticlesRepository {
     final response = await articlesService.getArticleCategories();
 
     return response.categories ?? [];
+  }
+
+  @override
+  Future updateArticleCategories({
+    required List<ArticleCategoryEntity> categories,
+  }) {
+    final request = ArticleCategoryRequest(categories: categories);
+    return articlesService.postArticleCategories(request);
   }
 }

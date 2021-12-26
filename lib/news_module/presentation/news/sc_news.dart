@@ -1,12 +1,15 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_cross_platform/app/router.dart';
 import 'package:mobile_cross_platform/gen/assets.gen.dart';
+import 'package:mobile_cross_platform/news_module/presentation/filter_news/bloc/filter_news_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/bloc/news_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/widgets/widget_list_article.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_loading.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widgets.dart';
 import 'package:mobile_cross_platform/theme/fonts.dart';
+import 'package:mobile_cross_platform/theme/theme.dart';
 
 class NewsScreen extends StatelessWidget {
   const NewsScreen({Key? key}) : super(key: key);
@@ -24,19 +27,18 @@ class NewsScreen extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                onPressed: _filterAction,
-                icon: Assets.images.filter.image(),
+                onPressed: () {
+                  _filterAction(context);
+                },
+                icon: Assets.images.filter.image(
+                  color: Theme.of(context).own().colors.coinBlueTitle,
+                ),
               )
             ],
           ),
           body: Container(
             color: Colors.white,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                _buildContent(context, state),
-              ],
-            ),
+            child: _buildContent(context, state),
           ),
         );
       },
@@ -45,14 +47,12 @@ class NewsScreen extends StatelessWidget {
 
   Widget _buildContent(BuildContext context, NewsState state) {
     if (state.status == NewsStatus.success) {
-      return Expanded(
-        child: RefreshIndicator(
-          onRefresh: () async {
-            BlocProvider.of<NewsBloc>(context).add(RefreshNews());
-          },
-          child: WidgetListArticle(
-            items: state.articles,
-          ),
+      return RefreshIndicator(
+        onRefresh: () async {
+          BlocProvider.of<NewsBloc>(context).add(RefreshNews());
+        },
+        child: WidgetListArticle(
+          items: state.articles,
         ),
       );
     } else if (state.status == NewsStatus.loading) {
@@ -68,7 +68,8 @@ class NewsScreen extends StatelessWidget {
     }
   }
 
-  void _filterAction() {
-    
+  void _filterAction(BuildContext context) {
+    BlocProvider.of<FilterNewsBloc>(context).add(FetchFilterNews());
+    Navigator.of(context).pushNamed(AppRouter.newsFilter);
   }
 }

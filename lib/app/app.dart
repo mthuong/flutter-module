@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mobile_cross_platform/news_module/api/articles_service.dart';
 import 'package:mobile_cross_platform/news_module/api/dio_provider.dart';
 import 'package:mobile_cross_platform/news_module/api/endpoints.dart';
+import 'package:mobile_cross_platform/news_module/presentation/filter_news/bloc/filter_news_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/bloc/bloc.dart';
 import 'package:mobile_cross_platform/news_module/repositories/article/article_repository_impl.dart';
 import 'package:mobile_cross_platform/news_module/repositories/article/core/article_repository.dart';
@@ -43,6 +44,12 @@ class MyApp extends StatelessWidget {
       articlesService: articleService,
     );
 
+    final filterBloc = FilterNewsBloc(articlesRepository: articleRepository);
+    final newsBloc = NewsBloc(
+      articlesRepository: articleRepository,
+      filterBloc: filterBloc,
+    );
+
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<ArticlesRepository>(
@@ -52,8 +59,10 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => NewsBloc(articlesRepository: articleRepository)
-              ..add(RefreshNews()),
+            create: (context) => newsBloc..add(RefreshNews()),
+          ),
+          BlocProvider(
+            create: (context) => filterBloc..add(FetchFilterNews()),
           ),
         ],
         child: const MyApp(),

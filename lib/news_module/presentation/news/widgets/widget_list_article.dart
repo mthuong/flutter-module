@@ -55,10 +55,16 @@ class _WidgetListArticleState extends State<WidgetListArticle> {
           height: 1,
         );
       },
-      itemCount:
-          widget.hasReachedMax ? widget.items.length : widget.items.length + 1,
+      itemCount: _itemCount(),
       controller: _scrollController,
     );
+  }
+
+  int _itemCount() {
+    if (widget.items.isEmpty) {
+      return 0;
+    }
+    return widget.hasReachedMax ? widget.items.length : widget.items.length + 1;
   }
 
   @override

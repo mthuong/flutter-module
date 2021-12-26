@@ -14,7 +14,7 @@ extension ThemeDataExtensions on ThemeData {
   static final Map<InputDecorationTheme, ThemeFields> _own = {};
 
   void addOwn(ThemeFields own) {
-    // can't use reference to ThemeData since Theme.of() can create a new localized instance from the original theme. Use internal fields, in this case InputDecoreationTheme reference which is not deep copied but simply a reference is copied
+    // can't use reference to ThemeData since Theme.of() can create a new localized instance from the original theme. Use internal fields, in this case InputDecorationTheme reference which is not deep copied but simply a reference is copied
     _own[inputDecorationTheme] = own;
   }
 
@@ -80,6 +80,27 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
       fontWeight: FontWeight.bold,
       fontSize: 18,
     ),
+    toolbarTextStyle: TextStyle(
+      color: Color.fromRGBO(53, 64, 83, 1),
+      fontFamily: FontFamily.sFProText,
+      fontWeight: FontWeight.normal,
+      fontSize: 18,
+    ),
+  ),
+  colorScheme: const ColorScheme.light().copyWith(
+    primary: Colors.black,
+    background: Colors.white,
+    primaryVariant: const Color(0xff3700b3),
+    secondary: Colors.black,
+    secondaryVariant: const Color(0xff018786),
+    surface: Colors.white,
+    error: const Color(0xffb00020),
+    onPrimary: Colors.white,
+    onSecondary: Colors.black,
+    onSurface: Colors.black,
+    onBackground: Colors.black,
+    onError: Colors.white,
+    brightness: Brightness.light,
   ),
 )..addOwn(
     ThemeFields(

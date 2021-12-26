@@ -12,4 +12,8 @@ abstract class ArticlesRepository {
   Future<List<ArticleEntity>> loadArticles({required int page});
 
   Future<List<ArticleCategoryEntity>> loadArticleCategories();
+
+  Future<dynamic> updateArticleCategories({
+    required List<ArticleCategoryEntity> categories,
+  });
 }

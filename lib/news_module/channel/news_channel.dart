@@ -8,4 +8,10 @@ class NewsPlatformChannel {
 
 class NewsPlatformMethod {
   static const getHeader = 'getHeader';
+  static const hideBottomBar = 'hideBottomBar';
+  static const showBottomBar = 'showBottomBar';
+
+  /// Invoke openBrowser with argument
+  /// param: argument
+  static const openBrowser = 'openBrowser';
 }

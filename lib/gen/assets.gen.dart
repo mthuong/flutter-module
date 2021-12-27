@@ -10,9 +10,25 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/back_arrow.png
+  AssetGenImage get backArrow =>
+      const AssetGenImage('assets/images/back_arrow.png');
+
   /// File path: assets/images/hako_loader.gif
   AssetGenImage get hakoLoader =>
       const AssetGenImage('assets/images/hako_loader.gif');
+
+  /// File path: assets/images/ic_news_browser.png
+  AssetGenImage get icNewsBrowser =>
+      const AssetGenImage('assets/images/ic_news_browser.png');
+
+  /// File path: assets/images/ic_news_setting.png
+  AssetGenImage get icNewsSetting =>
+      const AssetGenImage('assets/images/ic_news_setting.png');
+
+  /// File path: assets/images/ic_news_share.png
+  AssetGenImage get icNewsShare =>
+      const AssetGenImage('assets/images/ic_news_share.png');
 }
 
 class Assets {

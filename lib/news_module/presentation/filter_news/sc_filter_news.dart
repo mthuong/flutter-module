@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_cross_platform/news_module/channel/news_channel.dart';
 import 'package:mobile_cross_platform/news_module/presentation/filter_news/widgets/widget_filter_item.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_nav_title.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_unknown_state.dart';
@@ -12,8 +13,29 @@ import 'package:mobile_cross_platform/theme/fonts.dart';
 
 import 'bloc/filter_news_bloc.dart';
 
-class FilterNewsScreen extends StatelessWidget {
+class FilterNewsScreen extends StatefulWidget {
   const FilterNewsScreen({Key? key}) : super(key: key);
+
+  @override
+  _FilterNewsScreenState createState() => _FilterNewsScreenState();
+}
+
+class _FilterNewsScreenState extends State<FilterNewsScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Hide bottom bar
+    NewsPlatformChannel.platform.invokeMethod(NewsPlatformMethod.hideBottomBar);
+  }
+
+  @override
+  void dispose() {
+    // Show bottom bar
+    NewsPlatformChannel.platform.invokeMethod(NewsPlatformMethod.showBottomBar);
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -40,12 +40,14 @@ class ThemeColor {
   final Color coinBlueTitle;
   final Color coinSlateGray;
   final Color coinLineWhite;
+  final Color coinLink;
 
   ThemeColor({
     required this.error,
     required this.coinBlueTitle,
     required this.coinSlateGray,
     required this.coinLineWhite,
+    required this.coinLink,
   });
 }
 
@@ -59,6 +61,7 @@ class ThemeFields {
         coinBlueTitle: const Color.fromRGBO(53, 64, 83, 1),
         coinSlateGray: const Color.fromRGBO(117, 128, 142, 1),
         coinLineWhite: const Color(0xFFEEF2F5),
+        coinLink: Colors.lightBlue,
       ),
     );
   }
@@ -103,14 +106,7 @@ final ThemeData lightTheme = ThemeData.light().copyWith(
     brightness: Brightness.light,
   ),
 )..addOwn(
-    ThemeFields(
-      colors: ThemeColor(
-        error: const Color(0xFFFF0000),
-        coinBlueTitle: const Color.fromRGBO(53, 64, 83, 1),
-        coinSlateGray: const Color.fromRGBO(117, 128, 142, 1),
-        coinLineWhite: const Color(0xFFEEF2F5),
-      ),
-    ),
+    ThemeFields.empty(),
   );
 
 // DarkTheme
@@ -127,12 +123,5 @@ final ThemeData darkTheme = ThemeData.light().copyWith(
     ),
   ),
 )..addOwn(
-    ThemeFields(
-      colors: ThemeColor(
-        error: const Color(0xFFFF0000),
-        coinBlueTitle: const Color.fromRGBO(53, 64, 83, 1),
-        coinSlateGray: const Color.fromRGBO(117, 128, 142, 1),
-        coinLineWhite: const Color(0xFFEEF2F5),
-      ),
-    ),
+    ThemeFields.empty(),
   );

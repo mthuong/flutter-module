@@ -5,6 +5,7 @@ import 'package:mobile_cross_platform/app/router.dart';
 import 'package:mobile_cross_platform/gen/assets.gen.dart';
 import 'package:mobile_cross_platform/news_module/presentation/filter_news/bloc/filter_news_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/bloc/news_bloc.dart';
+import 'package:mobile_cross_platform/news_module/presentation/news/widgets/widget_badge.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/widgets/widget_list_article.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_loading.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widgets.dart';
@@ -25,7 +26,15 @@ class NewsScreen extends StatelessWidget {
               AppLocalizations.of(context)!.news,
               style: Style.semibold,
             ),
+            centerTitle: true,
             actions: [
+              BlocBuilder<FilterNewsBloc, FilterNewsState>(
+                builder: (context, state) {
+                  return WidgetBadge(
+                    badge: state.numberOfFilter,
+                  );
+                },
+              ),
               IconButton(
                 onPressed: () {
                   _filterAction(context);

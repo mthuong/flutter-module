@@ -41,6 +41,7 @@ class ThemeColor {
   final Color coinSlateGray;
   final Color coinLineWhite;
   final Color coinLink;
+  final Color swBg;
 
   ThemeColor({
     required this.error,
@@ -48,6 +49,7 @@ class ThemeColor {
     required this.coinSlateGray,
     required this.coinLineWhite,
     required this.coinLink,
+    required this.swBg,
   });
 }
 
@@ -62,6 +64,7 @@ class ThemeFields {
         coinSlateGray: const Color.fromRGBO(117, 128, 142, 1),
         coinLineWhite: const Color(0xFFEEF2F5),
         coinLink: Colors.lightBlue,
+        swBg: const Color.fromRGBO(249, 242, 239, 1),
       ),
     );
   }

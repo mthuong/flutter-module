@@ -34,4 +34,8 @@ class FilterNewsState {
   }
 
   List<Object> get props => [status, categories];
+
+  int get numberOfFilter {
+    return categories.where((element) => element.isChecked == true).length;
+  }
 }

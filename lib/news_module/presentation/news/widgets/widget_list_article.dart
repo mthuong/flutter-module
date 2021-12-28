@@ -55,10 +55,16 @@ class _WidgetListArticleState extends State<WidgetListArticle> {
           height: 1,
         );
       },
-      itemCount:
-          widget.hasReachedMax ? widget.items.length : widget.items.length + 1,
+      itemCount: _itemCount(),
       controller: _scrollController,
     );
+  }
+
+  int _itemCount() {
+    if (widget.items.isEmpty) {
+      return 0;
+    }
+    return widget.hasReachedMax ? widget.items.length : widget.items.length + 1;
   }
 
   @override
@@ -102,6 +108,8 @@ class _ItemWidgetArticle extends StatelessWidget {
           vertical: 20,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IntrinsicHeight(
               child: Row(
@@ -162,6 +170,7 @@ class _ItemWidgetArticle extends StatelessWidget {
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.start,
             )
           ],
         ),
@@ -198,13 +207,21 @@ class _ItemWidgetHighlightArticle extends StatelessWidget {
               vertical: 20,
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   article.title,
                   style: Style.semibold_22.copyWith(
                     color: Colors.white,
+                    shadows: [
+                      const BoxShadow(
+                        color: Colors.black,
+                        // spreadRadius: 10,
+                        blurRadius: 10,
+                        offset: Offset.zero,
+                      ),
+                    ],
                   ),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -216,6 +233,14 @@ class _ItemWidgetHighlightArticle extends StatelessWidget {
                   '${article.timeAgo} • ${article.source}',
                   style: Style.regular.copyWith(
                     color: Colors.white,
+                    shadows: [
+                      const BoxShadow(
+                        color: Colors.black,
+                        // spreadRadius: 10,
+                        blurRadius: 10,
+                        offset: Offset.zero,
+                      ),
+                    ],
                   ),
                 ),
                 const WidgetSpacer(
@@ -226,9 +251,18 @@ class _ItemWidgetHighlightArticle extends StatelessWidget {
                   article.link ?? '',
                   style: Style.regular.copyWith(
                     color: Colors.white,
+                    shadows: [
+                      const BoxShadow(
+                        color: Colors.black,
+                        // spreadRadius: 10,
+                        blurRadius: 10,
+                        offset: Offset.zero,
+                      ),
+                    ],
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.start,
                 )
               ],
             ),

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:mobile_cross_platform/news_module/api/request/article_category_request.dart';
 import 'package:mobile_cross_platform/news_module/api/request/article_type_query.dart';
+import 'package:mobile_cross_platform/news_module/api/response/article_categories_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import 'package:mobile_cross_platform/news_module/api/apis.dart';
@@ -20,7 +22,19 @@ abstract class ArticlesService {
     @Query('page') required int page,
     @Query('type') required NewsTypeQuery type,
   });
+
+  @GET(Apis.articleCategories)
+  Future<ArticleCategoryResponse> getArticleCategories();
+
+  @POST(Apis.articleCategories)
+  Future<dynamic> postArticleCategories(
+    @Body() ArticleCategoryRequest request,
+  );
 }
 
 ArticlesResponse deserializeArticlesResponse(Map<String, dynamic> json) =>
     ArticlesResponse.fromJson(json);
+ArticleCategoryResponse deserializeArticleCategoryResponse(
+  Map<String, dynamic> json,
+) =>
+    ArticleCategoryResponse.fromJson(json);

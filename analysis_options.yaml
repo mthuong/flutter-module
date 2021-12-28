@@ -29,8 +29,9 @@ linter:
 analyzer:
   exclude:
     - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
   errors:
     # Ignore todo linter error
     todo: ignore
     require_trailing_commas: error
-  
+    invalid_annotation_target: ignore

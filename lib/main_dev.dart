@@ -7,17 +7,15 @@ import 'app/app_config.dart';
 import 'app/simple_bloc_observer.dart';
 
 void main() {
-  productionMain();
+  stagingMain();
 }
 
 @pragma('vm:entry-point')
-void productionMain() {
+void stagingMain() {
   BlocOverrides.runZoned(
     () {
       runApp(
         AppConfig(
-          // ignore: fixme
-          // FIXME: Hardcode staging endpoint for default entry. We will resolve this issue when implement Flutter Engine Group API
           endpointType: EndPointType.staging,
           child: Builder(
             builder: (context) {

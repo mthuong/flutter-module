@@ -93,3 +93,7 @@ untranslated_messages.txt
 
 # Log
 *.log
+
+# Ignore generated files
+*.g.dart
+*.freezed.dart

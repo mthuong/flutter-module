@@ -132,7 +132,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
                 RichText(
                   text: TextSpan(
                     style: Style.regular.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Theme.of(context).own().colors.coinLink,
                       decoration: TextDecoration.underline,
                     ),
                     text: article.link ?? '',

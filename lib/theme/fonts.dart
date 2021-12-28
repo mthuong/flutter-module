@@ -10,6 +10,12 @@ extension Style on FontFamily {
     );
   }
 
+  static get regular_16 {
+    return regular.copyWith(
+      fontSize: 16.0,
+    );
+  }
+
   static get medium {
     return const TextStyle(
       fontFamily: FontFamily.sFProText,

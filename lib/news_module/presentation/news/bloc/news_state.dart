@@ -1,6 +1,6 @@
 part of 'news_bloc.dart';
 
-enum NewsStatus { initial, success, failure }
+enum NewsStatus { initial, loading, success, failure }
 
 class NewsState extends Equatable {
   const NewsState({

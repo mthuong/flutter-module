@@ -18,7 +18,7 @@ void productionMain() {
         AppConfig(
           // ignore: fixme
           // FIXME: Hardcode staging endpoint for default entry. We will resolve this issue when implement Flutter Engine Group API
-          endpointType: EndPointType.staging,
+          endpointType: EndPointType.production,
           child: Builder(
             builder: (context) {
               return MyApp.runWidget(context);

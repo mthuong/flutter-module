@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_cross_platform/app/router.dart';
@@ -149,8 +150,10 @@ class _ItemWidgetArticle extends StatelessWidget {
                       height: 100,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6.0),
-                        child: Image.network(
-                          article.banner ?? '',
+                        child: CachedNetworkImage(
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator.adaptive(),
+                          imageUrl: article.banner ?? '',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -197,8 +200,10 @@ class _ItemWidgetHighlightArticle extends StatelessWidget {
       child: Stack(
         alignment: const Alignment(0.6, 1),
         children: [
-          Image.network(
-            article.banner ?? '',
+          CachedNetworkImage(
+            placeholder: (context, url) =>
+                const CircularProgressIndicator.adaptive(),
+            imageUrl: article.banner ?? '',
             fit: BoxFit.cover,
           ),
           Container(

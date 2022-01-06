@@ -62,6 +62,7 @@ class NewsScreen extends StatelessWidget {
         },
         child: WidgetListArticle(
           items: state.articles,
+          hasReachedMax: state.hasReachedMax,
         ),
       );
     } else if (state.status == NewsStatus.loading) {

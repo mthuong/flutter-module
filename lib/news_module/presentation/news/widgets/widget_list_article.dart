@@ -2,9 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_cross_platform/app/router.dart';
+import 'package:mobile_cross_platform/gen/assets.gen.dart';
 import 'package:mobile_cross_platform/news_module/presentation/news/bloc/news_bloc.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_default_loading.dart';
+import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_empty.dart';
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_separator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:mobile_cross_platform/news_module/presentation/widgets/widget_spacer.dart';
 import 'package:mobile_cross_platform/news_module/repositories/article/core/article_entity.dart';
@@ -18,7 +21,7 @@ class WidgetListArticle extends StatefulWidget {
   const WidgetListArticle({
     Key? key,
     required this.items,
-    this.hasReachedMax = false,
+    required this.hasReachedMax,
   }) : super(key: key);
 
   @override
@@ -36,6 +39,17 @@ class _WidgetListArticleState extends State<WidgetListArticle> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.items.isEmpty) {
+      // Render empty view
+      return WidgetEmpty(
+        image: Assets.images.icNewsEmpty.image(
+          fit: BoxFit.contain,
+        ),
+        title: AppLocalizations.of(context)!.no_news_yet,
+        description: AppLocalizations.of(context)!.no_news_desc,
+      );
+    }
+
     return ListView.separated(
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
@@ -62,9 +76,6 @@ class _WidgetListArticleState extends State<WidgetListArticle> {
   }
 
   int _itemCount() {
-    if (widget.items.isEmpty) {
-      return 0;
-    }
     return widget.hasReachedMax ? widget.items.length : widget.items.length + 1;
   }
 
@@ -151,8 +162,9 @@ class _ItemWidgetArticle extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6.0),
                         child: CachedNetworkImage(
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator.adaptive(),
+                          placeholder: (context, url) => Assets
+                              .images.icNewsDefault
+                              .image(fit: BoxFit.fill),
                           imageUrl: article.banner ?? '',
                           fit: BoxFit.cover,
                         ),
@@ -198,13 +210,16 @@ class _ItemWidgetHighlightArticle extends StatelessWidget {
             .pushNamed(AppRouter.newsDetail, arguments: article);
       },
       child: Stack(
-        alignment: const Alignment(0.6, 1),
+        alignment: const Alignment(0.5, 1),
         children: [
           CachedNetworkImage(
             placeholder: (context, url) =>
-                const CircularProgressIndicator.adaptive(),
+                Assets.images.icNewsDefault.image(fit: BoxFit.cover),
             imageUrl: article.banner ?? '',
             fit: BoxFit.cover,
+            placeholderFadeInDuration: const Duration(seconds: 1),
+            errorWidget: (context, url, error) =>
+                Assets.images.icNewsDefault.image(fit: BoxFit.cover),
           ),
           Container(
             padding: const EdgeInsets.symmetric(

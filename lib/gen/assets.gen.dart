@@ -28,6 +28,14 @@ class $AssetsImagesGen {
   AssetGenImage get icNewsBrowser =>
       const AssetGenImage('assets/images/ic_news_browser.png');
 
+  /// File path: assets/images/ic_news_default.png
+  AssetGenImage get icNewsDefault =>
+      const AssetGenImage('assets/images/ic_news_default.png');
+
+  /// File path: assets/images/ic_news_empty.png
+  AssetGenImage get icNewsEmpty =>
+      const AssetGenImage('assets/images/ic_news_empty.png');
+
   /// File path: assets/images/ic_news_setting.png
   AssetGenImage get icNewsSetting =>
       const AssetGenImage('assets/images/ic_news_setting.png');

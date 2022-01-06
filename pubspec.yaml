@@ -34,7 +34,7 @@ dependencies:
   retrofit: ^3.0.0
   dio: ^4.0.4
   logger: any
-  flutter_bloc: ^8.0.0
+  flutter_bloc: ^8.0.1
   equatable: ^2.0.3
   bloc_concurrency: ^0.2.0
   url_launcher: ^6.0.17

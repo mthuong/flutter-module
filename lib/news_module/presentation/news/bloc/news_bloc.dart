@@ -55,7 +55,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   ) async {
     emit(
       state.copyWith(
-        status: NewsStatus.loading,
+        status: NewsStatus.refresh,
         page: 1,
         hasReachedMax: false,
       ),
@@ -69,7 +69,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
     if (state.hasReachedMax) return;
     try {
-      if (state.status == NewsStatus.loading) {
+      if (state.status == NewsStatus.loading ||
+          state.status == NewsStatus.refresh) {
         int page = state.page;
         final articles = await articlesRepository.loadArticles(page: page);
         log(

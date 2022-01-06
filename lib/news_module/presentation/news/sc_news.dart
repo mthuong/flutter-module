@@ -55,10 +55,12 @@ class NewsScreen extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context, NewsState state) {
-    if (state.status == NewsStatus.success) {
+    if (state.status == NewsStatus.success ||
+        state.status == NewsStatus.refresh) {
       return RefreshIndicator(
         onRefresh: () async {
           BlocProvider.of<NewsBloc>(context).add(RefreshNews());
+          return Future.delayed(const Duration(seconds: 1));
         },
         child: WidgetListArticle(
           items: state.articles,

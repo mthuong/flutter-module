@@ -39,7 +39,7 @@ class _WidgetListArticleState extends State<WidgetListArticle> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.items.isEmpty) {
+    if (widget.items.isEmpty && widget.hasReachedMax == true) {
       // Render empty view
       return WidgetEmpty(
         image: Assets.images.icNewsEmpty.image(

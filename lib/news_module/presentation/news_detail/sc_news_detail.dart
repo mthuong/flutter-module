@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -97,8 +98,8 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
       ),
       body: Column(
         children: [
-          Image.network(
-            article.banner ?? '',
+          CachedNetworkImage(
+            imageUrl: article.banner ?? '',
             fit: BoxFit.cover,
           ),
           Container(

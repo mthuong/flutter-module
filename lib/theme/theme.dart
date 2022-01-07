@@ -63,7 +63,7 @@ class ThemeFields {
         coinBlueTitle: const Color.fromRGBO(53, 64, 83, 1),
         coinSlateGray: const Color.fromRGBO(117, 128, 142, 1),
         coinLineWhite: const Color(0xFFEEF2F5),
-        coinLink: Colors.lightBlue,
+        coinLink: const Color(0xFF457df5),
         swBg: const Color.fromRGBO(249, 242, 239, 1),
       ),
     );

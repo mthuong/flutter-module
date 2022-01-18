@@ -1,4 +1,4 @@
-# mobile_cross_platform
+# flutter module
 
 A new flutter module project.
 
@@ -12,8 +12,8 @@ see the [add-to-app documentation](https://flutter.dev/docs/development/add-to-a
 
 ## iOS - Run the Flutter module
 
-- `flutter pub run build_runner build`
 - `flutter pub get`
+- `flutter pub run build_runner build --delete-conflicting-outputs`
 - `pod install` if you have change any flutter package
 - Open main XCode project and run as normal
 
